@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNO Game</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Player {{ player }}'s Turn</h1>
+    <h2>Top Card: {{ top_card.color }} {{ top_card.value }}</h2>
+    <h3>Your Hand:</h3>
+    <form method="POST">
+        <ul>
+            {% for card in hand %}
+                <li>
+                    <input type="radio" name="card_index" value="{{ loop.index0 }}" required>
+                    {{ card.color }} {{ card.value }}
+                </li>
+            {% endfor %}
+        </ul>
+        <button type="submit" name="action" value="play">Play Card</button>
+        <button type="submit" name="action" value="draw">Draw Card</button>
+    </form>
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+</body>
+</html>
